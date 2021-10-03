@@ -7,5 +7,6 @@
     "backgroundTextStyle": "light",
     "navigationStyle": "custom"
   },
-  "style": "v2"
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

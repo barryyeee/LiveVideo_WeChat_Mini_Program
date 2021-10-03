@@ -3,7 +3,7 @@
     <view class="top-area">
         <image class="control-btn" src="{{editDelete ? '../../resource/buttons/cancle.png' : '../../resource/buttons/album.png'}}" bind:tap="{{editDelete ? 'closeDeleteEditor' : 'openPhotoLibrary'}}"/>
         <image src="../../resource/lens.png" class="lens-icon" bind:tap="gotoIndex"/>
-        <image bind:tap="confirmDelete" src="{{changeColor ? '../../resource/buttons/delete.png' : '../../resource/buttons/delete_disable.png'}}" class="control-btn {{editDelete ? '' : 'hide-delete-icons'}}" />
+        <image bind:tap="confirmDelete" src="{{changeColor ? '../../resource/buttons/delete.png' : '../../resource/buttons/delete_disable.png'}}" class="control-btn {{editDelete ? '' : 'hide-component'}}" />
     </view>
     <view class="video-history">
         <view wx:if="{{!videoList.length}}" class="no-videos-text">
@@ -12,7 +12,7 @@
             </view>
         </view>
         <view class="video-wrap" wx:for="{{videoList}}" wx:key="index" wx:for-item="videoItem" data-index="{{index}}" data-selected="{{videoItem.selected}}" bind:tap="tapVideoItem" bind:longpress="openDeleteEditor">
-            <view class="video-mask" style="visibility:{{videoItem.selected ? '' : 'hidden'}}"></view>
+            <view class="video-mask {{videoItem.selected ? 'visible-mask' : 'hide-mask'}}"></view>
             <video wx:if="{{videoItem.src}}" src="{{videoItem.src}}" class="video-item"></video>
         </view>
     </view>

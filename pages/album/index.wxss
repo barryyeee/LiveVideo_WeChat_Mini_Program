@@ -6,7 +6,6 @@
     background-color: transparent;
     align-items: center;
     justify-content: space-evenly;
-    overflow-x: hidden;
 }
 .lens-icon {
     width: 128rpx;
@@ -15,9 +14,8 @@
 .video-history{
     padding:50rpx;
     margin-top: 128rpx;
-    overflow-x: hidden;
 }
-.hide-delete-icons{
+.hide-component{
     visibility: hidden;
 }
 .no-videos-text{
@@ -37,10 +35,19 @@
     width:100%;
 }
 .video-mask{
-    width: 100%;
+    width: calc(100% - 100rpx);
     height: 225px;
     position: absolute;
     background-color: white;
-    opacity: 70%;
     z-index: 9;
+}
+.visible-mask {
+    opacity: 0.7;
+    visibility: visible;
+    transition: all 0.5s;
+}
+.hide-mask {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s;
 }

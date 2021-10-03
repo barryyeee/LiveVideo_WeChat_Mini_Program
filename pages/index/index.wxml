@@ -18,6 +18,7 @@
     </view>
     <view class="bottom-area">
       <image class="shoot-btn" src="../../resource/buttons/shoot.png" bind:tap="{{ startRecord ? 'stopRecord' : 'startRecord'}}"/>
+      <image src="../../resource/recording.png" class="record-light {{startRecord ? 'active' : ''}}"/>
       <image class="decoration-bar" src="../../resource/decoration.png" />
     </view>
   </view>

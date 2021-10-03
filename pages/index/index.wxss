@@ -58,6 +58,8 @@
 }
 .control-area {
   margin-right: 100rpx;
+  display: flex;
+  align-items: center;
 }
 .bottom-area{
   width: 90vw;
@@ -74,5 +76,14 @@
 .shoot-btn{
   width: 150rpx;
   height: 150rpx;
-  margin-right: 150rpx;
+  margin-right: 30rpx;
+}
+.record-light{
+  width: 24rpx;
+  height: 24rpx;
+  filter: brightness(0);
+  margin-right: 120rpx;
+}
+.active {
+  filter: none;
 }
