@@ -14,10 +14,8 @@ Page({
         videoList: [],
         editDelete: false,
         changeColor: false,
-        isFixed: false
     },
-    fixedTop: 0,
-    selectedDeleteIndex: [],
+    deleteNum: 0,
 
     onReady() {
         this.getVideoListFromStorage();
@@ -32,7 +30,8 @@ Page({
     },
 
     closeDeleteEditor() {
-        this.selectedDeleteIndex = [];
+        // this.selectedDeleteIndex = [];
+        this.deleteNum = 0;
         const newList = this.data.videoList.map((item) => {
             return {
                 ...item,
@@ -46,12 +45,14 @@ Page({
     },
 
     openDeleteEditor(event) {
-        this.selectedDeleteIndex = [];
-        let { index, selected } = event.currentTarget.dataset;
-        this.updateDeleteList(index, selected);
-        this.setData({
-            editDelete: true,
-        });
+        if (!this.data.editDelete) {
+            this.deleteNum = 0;
+            let { index, selected } = event.currentTarget.dataset;
+            this.updateDeleteList(index, selected);
+            this.setData({
+                editDelete: true,
+            });
+        }
     },
 
     tapVideoItem(event) {
@@ -63,21 +64,12 @@ Page({
     },
 
     updateDeleteList(index, selected) {
-        if (selected) {
-            const removeIndex = this.selectedDeleteIndex.findIndex((value) => {
-                return value === index;
-            });
-            this.selectedDeleteIndex.splice(removeIndex, 1);
-        }
-        else {
-            this.selectedDeleteIndex.push(index);
-        }
-        const changeColor = this.selectedDeleteIndex.length > 0;
+        this.deleteNum += selected ? -1 : 1;
         const videoList = this.data.videoList;
         let newSelected = 'videoList[' + index + '].selected';
         this.setData({
             [newSelected]: !selected,
-            changeColor
+            changeColor: this.deleteNum > 0
         });
     },
 
@@ -114,16 +106,16 @@ Page({
     },
 
     confirmDelete() {
-        if (this.selectedDeleteIndex.length === 0) return;
-        const newVideoList = this.data.videoList;
-        this.selectedDeleteIndex.forEach((value) => {
-            newVideoList.splice(value, 1);
+        if (this.deleteNum === 0) return;
+        const newVideoList = this.data.videoList.filter((value) => {
+            return !value.selected;
         });
+
         this.setData({
             videoList: newVideoList,
             changeColor: false
         }, () => {
-            this.selectedDeleteIndex = [];
+            this.deleteNum = 0;
             this.updateStorage(newVideoList);
         });
 

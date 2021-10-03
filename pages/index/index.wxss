@@ -49,15 +49,15 @@
 .history-btn {
   width: 100rpx;
   height: 100rpx;
+  margin-right: 60rpx;
 }
 .top-area{
   display: inline-flex;
   align-items: center;
   width: 90vw;
-  justify-content: flex-end;
+  justify-content: center;
 }
 .control-area {
-  margin-right: 100rpx;
   display: flex;
   align-items: center;
 }

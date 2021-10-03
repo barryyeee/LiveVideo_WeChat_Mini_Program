@@ -43,7 +43,6 @@ Page({
         this.setData({
           startRecord: true,
         });
-        console.log('startRecord')
       }
     })
   },
