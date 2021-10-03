@@ -1,0 +1,24 @@
+<view class="page" style="padding-top:{{placeHolderHeight}}px">
+  <image src="../../resource/background.png" class="background" />
+  <view class="divide-line"></view>
+  <view class="main-body">
+    <view class="top-area">
+      <view class="control-area">
+        <image class="control-btn" bind:tap="controlFlash" src="{{useFlash ? '../../resource/buttons/flash.png' : '../../resource/buttons/flash_disable.png'}}" />
+        <image class="control-btn" bind:tap="controlCameraPosition" src="../../resource/buttons/rotate.png" />
+      </view>
+      <image class="history-btn" src="../../resource/history.png" bind:tap="gotoAlbumPage"/>
+    </view>
+    <view class="middle-area">
+      <view class="block-container {{startRecord ? 'block-open' : ''}}">
+        <image src="../../resource/viewport_block.png"  class="block-img"/>
+      </view>
+      <camera device-position="{{useBackCamera ? 'back' : 'front'}}" flash="{{useFlash ? 'on' : 'off'}}" bind:error="handleError" class="camera-style"></camera>
+      <image src="../../resource/viewport.png" class="viewport"/>
+    </view>
+    <view class="bottom-area">
+      <image class="shoot-btn" src="../../resource/buttons/shoot.png" bind:tap="{{ startRecord ? 'stopRecord' : 'startRecord'}}"/>
+      <image class="decoration-bar" src="../../resource/decoration.png" />
+    </view>
+  </view>
+</view>
